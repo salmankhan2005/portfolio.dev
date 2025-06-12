@@ -7,11 +7,14 @@ import Link from 'next/link';
 import { CgGitFork } from "react-icons/cg";
 import { IoStar } from "react-icons/io5";
 import GlowCard from "../components/helper/glow-card";
+import { useEffect } from "react";
 
 function Footer() {
-  if (typeof window !== "undefined") {
-    // safe to use document or window here
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // browser-only code here
+    }
+  }, []);
 
   return (
     <div className="relative border-t bg-[#0d1224] border-[#353951] text-white">
