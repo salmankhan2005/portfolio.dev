@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { CgGitFork } from "react-icons/cg";
 import { IoStar } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import GlowCard from "../components/helper/glow-card";
 
 function Footer() {
   if (typeof window !== "undefined") {
