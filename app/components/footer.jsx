@@ -6,8 +6,6 @@ import { CgGitFork } from "react-icons/cg";
 import { IoStar } from "react-icons/io5";
 import dynamic from "next/dynamic";
 
-const MyComponent = dynamic(() => import("./MyComponent"), { ssr: false });
-
 function Footer() {
   if (typeof window !== "undefined") {
     // safe to use document or window here
