@@ -12,10 +12,10 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@next/third-parties": "15.1.1",
-    "@tsparticles/slim": "^3.8.1",
+    "@tsparticles/react": "3.0.0",
     "axios": "^1.6.8",
     "lottie-react": "^2.4.1",
-    "next": "15.1.1",
+    "next": "^15.3.3",
     "nodemailer": "^6.9.15",
     "react": "19.0.0",
     "react-dom": "19.0.0",
@@ -23,7 +23,6 @@
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^4.11.0",
     "react-toastify": "^10.0.4",
-    "react-tsparticles": "^2.12.2",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
