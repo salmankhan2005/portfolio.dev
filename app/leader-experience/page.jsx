@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 import GlowCard from "../components/helper/glow-card";
 import { BsPersonWorkspace } from "react-icons/bs";
 import Image from "next/image";
