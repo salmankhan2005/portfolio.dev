@@ -22,14 +22,36 @@ const nextConfig = {
         hostname: 'media2.dev.to',
         pathname: '**',
       },
-    ],
-    domains: [
-      'cdn.jsdelivr.net',
-      'upload.wikimedia.org',
-      'avatars.githubusercontent.com',
-      'www.netlify.com',
-      'assets.vercel.com',
-      'cdn-icons-png.flaticon.com'
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.netlify.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.vercel.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-icons-png.flaticon.com',
+        pathname: '**',
+      }
     ],
   },
 }
