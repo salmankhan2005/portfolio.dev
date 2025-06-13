@@ -1,12 +1,14 @@
-// @flow strict
+"use client"
 
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 function ProjectCard({ project }) {
+  const [isMounted, setIsMounted] = useState(false);
 
-  if (typeof window !== "undefined") {
-    // browser-only code
-  }
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <div className="from-[#0d1224] border-[#1b2c68a0] relative rounded-lg border bg-gradient-to-r to-[#0a0d37] w-full">
@@ -38,21 +40,17 @@ function ProjectCard({ project }) {
             <span className="text-amber-300">{project.name}</span>
             <span className="text-gray-400">{`',`}</span>
           </div>
-
           <div className="ml-4 lg:ml-8 mr-2">
-            <span className=" text-white">tools:</span>
+            <span className="text-white">tools:</span>
             <span className="text-gray-400">{` ['`}</span>
-            {
-              project.tools.map((tag, i) => (
-                <React.Fragment key={i}>
-                  <span className="text-amber-300">{tag}</span>
-                  {
-                    project.tools?.length - 1 !== i &&
-                    <span className="text-gray-400">{`', '`}</span>
-                  }
-                </React.Fragment>
-              ))
-            }
+            {project.tools.map((tag, i) => (
+              <React.Fragment key={i}>
+                <span className="text-amber-300">{tag}</span>
+                {project.tools?.length - 1 !== i && (
+                  <span className="text-gray-400">{`', '`}</span>
+                )}
+              </React.Fragment>
+            ))}
             <span className="text-gray-400">{"],"}</span>
           </div>
           <div>
@@ -70,6 +68,6 @@ function ProjectCard({ project }) {
       </div>
     </div>
   );
-};
+}
 
 export default ProjectCard;
