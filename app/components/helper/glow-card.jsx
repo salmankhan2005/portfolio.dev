@@ -1,9 +1,11 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const GlowCard = ({ children, identifier }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef(null);
+  const cardsRef = useRef(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -12,8 +14,10 @@ const GlowCard = ({ children, identifier }) => {
   useEffect(() => {
     if (!isMounted || typeof window === 'undefined') return;
 
-    const CONTAINER = document.querySelector(`.glow-container-${identifier}`);
-    const CARDS = document.querySelectorAll(`.glow-card-${identifier}`);
+    const CONTAINER = containerRef.current;
+    const CARDS = cardsRef.current?.querySelectorAll(`.glow-card-${identifier}`);
+
+    if (!CONTAINER || !CARDS) return;
 
     const CONFIG = {
       proximity: 40,
@@ -65,21 +69,23 @@ const GlowCard = ({ children, identifier }) => {
       );
     };
 
-    document.body.addEventListener('pointermove', UPDATE);
+    window.addEventListener('pointermove', UPDATE);
     RESTYLE();
     UPDATE();
 
     return () => {
-      document.body.removeEventListener('pointermove', UPDATE);
+      window.removeEventListener('pointermove', UPDATE);
     };
   }, [identifier, isMounted]);
 
   return (
-    <div className={`glow-container-${identifier} glow-container`}>
-      <article className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-[#2a2e5a] transition-all duration-300 relative bg-[#101123] text-gray-200 rounded-xl hover:border-transparent w-full`}>
-        <div className="glows"></div>
-        {children}
-      </article>
+    <div ref={containerRef} className={`glow-container-${identifier} glow-container`}>
+      <div ref={cardsRef}>
+        <article className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-[#2a2e5a] transition-all duration-300 relative bg-[#101123] text-gray-200 rounded-xl hover:border-transparent w-full`}>
+          <div className="glows"></div>
+          {children}
+        </article>
+      </div>
     </div>
   );
 };
