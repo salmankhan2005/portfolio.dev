@@ -10,7 +10,7 @@ const GlowCard = ({ children, identifier }) => {
   }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isMounted || typeof window === 'undefined') return;
 
     const CONTAINER = document.querySelector(`.glow-container-${identifier}`);
     const CARDS = document.querySelectorAll(`.glow-card-${identifier}`);
@@ -65,16 +65,12 @@ const GlowCard = ({ children, identifier }) => {
       );
     };
 
-    if (typeof window !== 'undefined') {
-      document.body.addEventListener('pointermove', UPDATE);
-      RESTYLE();
-      UPDATE();
-    }
+    document.body.addEventListener('pointermove', UPDATE);
+    RESTYLE();
+    UPDATE();
 
     return () => {
-      if (typeof window !== 'undefined') {
-        document.body.removeEventListener('pointermove', UPDATE);
-      }
+      document.body.removeEventListener('pointermove', UPDATE);
     };
   }, [identifier, isMounted]);
 
