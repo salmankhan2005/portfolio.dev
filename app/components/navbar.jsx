@@ -2,20 +2,38 @@
 
 // @flow strict
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0d1224]/80 backdrop-blur-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+      isScrolled ? 'bg-[#0d1224]/90 backdrop-blur-sm py-2' : 'bg-transparent py-4'
+    }`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex flex-shrink-0 items-center">
+          <div className={`flex flex-shrink-0 items-center transition-all duration-300 ${
+            isScrolled ? 'opacity-0 w-0' : 'opacity-100'
+          }`}>
             <Link
               href="/"
               className="text-[#16f2b3] text-2xl font-bold">
@@ -23,8 +41,8 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          {/* Mobile menu button - always visible */}
+          <div className="flex md:hidden relative z-[9999]">
             <button
               type="button"
               onClick={toggleMenu}
@@ -112,7 +130,10 @@ function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`} id="mobile-menu">
+      <div 
+        className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden fixed top-16 left-0 right-0 z-[9998] bg-[#0d1224]/95 backdrop-blur-sm`} 
+        id="mobile-menu"
+      >
         <div className="space-y-1 px-2 pb-3 pt-2">
           <Link className="block px-3 py-2 text-base font-medium text-white hover:bg-gray-700 hover:text-white" href="/#about">
             ABOUT

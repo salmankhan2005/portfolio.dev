@@ -7,7 +7,7 @@ export const personalData = {
   phone: '+91 9342298949',
   address: '128,Srinivasapuram Extension Bhavani, Tamil nadu-638301',
   github: 'https://github.com/salmankhan2005',
-  linkedIn: 'www.linkedin.com/in/salmankhan2005',
+  linkedIn: 'https://www.linkedin.com/in/salmankhan2005',
   resume: "https://drive.google.com/file/d/1wTKMmKdFuPWwoiJqUITRqckhVwdTBYDn/view",
   highlights: [
     "13+ innovative projects in AI, IoT, and Web",
